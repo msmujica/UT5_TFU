@@ -95,7 +95,7 @@ En este proyecto se aplica de forma adaptada a una API REST hecha con FastAPI.
 
 - `Controller`: contiene los endpoints de la API. Recibe las solicitudes HTTP, procesa los datos necesarios, se comunica con la lógica correspondiente y devuelve una respuesta.
 
-onnection.py
+connection.py
 ```
 
 ## Archivo de pruebas
@@ -104,7 +104,6 @@ El proyecto incluye un archivo de Postman para probar los endpoints de la API.
 
 El archivo se encuentra en:
 
-```txt
 postman/endpoints.postman_collection.json
 ```
 

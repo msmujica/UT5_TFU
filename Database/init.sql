@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(150) NOT NULL UNIQUE
 );
 
-INSERT INTO usuarios (nombre, email)
+INSERT IGNORE INTO usuarios (nombre, email)
 VALUES ('Martin', 'martin@test.com');

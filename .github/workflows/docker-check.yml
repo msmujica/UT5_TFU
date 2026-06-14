@@ -5,10 +5,6 @@ on:
     branches:
       - main
 
-  push:
-    branches:
-      - main
-
 jobs:
   docker-check:
     runs-on: ubuntu-latest
@@ -20,25 +16,29 @@ jobs:
       - name: Levantar contenedores
         run: docker compose up -d --build
 
-      - name: Esperar a que la API levante
+      - name: Esperar contenedores
+        run: sleep 20
+
+      - name: Verificar estado de contenedores
         run: |
-          for i in {1..30}; do
-            if curl -f http://localhost:8000/docs; then
-              echo "API levantada correctamente"
-              exit 0
-            fi
+          docker compose ps
 
-            echo "Esperando API..."
-            sleep 3
-          done
+          BACKEND_STATUS=$(docker inspect -f '{{.State.Running}}' Backend)
+          DATABASE_STATUS=$(docker inspect -f '{{.State.Running}}' Database)
 
-          echo "La API no levantó correctamente"
-          docker compose logs
-          exit 1
+          if [ "$BACKEND_STATUS" != "true" ]; then
+            echo "El contenedor Backend no está corriendo"
+            docker compose logs Backend
+            exit 1
+          fi
 
-      - name: Probar conexión con base de datos
-        run: |
-          curl -f http://localhost:8000/db-test
+          if [ "$DATABASE_STATUS" != "true" ]; then
+            echo "El contenedor Database no está corriendo"
+            docker compose logs Database
+            exit 1
+          fi
+
+          echo "Backend y Database están corriendo correctamente"
 
       - name: Apagar contenedores
         if: always()

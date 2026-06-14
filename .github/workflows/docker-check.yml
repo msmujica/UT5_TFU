@@ -1,0 +1,45 @@
+name: Docker Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+jobs:
+  docker-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Levantar contenedores
+        run: docker compose up -d --build
+
+      - name: Esperar a que la API levante
+        run: |
+          for i in {1..30}; do
+            if curl -f http://localhost:8000/docs; then
+              echo "API levantada correctamente"
+              exit 0
+            fi
+
+            echo "Esperando API..."
+            sleep 3
+          done
+
+          echo "La API no levantó correctamente"
+          docker compose logs
+          exit 1
+
+      - name: Probar conexión con base de datos
+        run: |
+          curl -f http://localhost:8000/db-test
+
+      - name: Apagar contenedores
+        if: always()
+        run: docker compose down -v

@@ -114,5 +114,5 @@ Para utilizarlo:
 
 1. Abrir Postman.
 2. Seleccionar la opción `Import`.
-3. Elegir el archivo `endpoints.postman_collection.json`.
+3. Elegir el archivo `UT5_TFU.postman_collection.json`.
 4. Ejecutar los endpoints disponibles.

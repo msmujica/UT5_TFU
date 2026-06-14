@@ -1,0 +1,34 @@
+{
+  "info": {
+    "_postman_id": "327818b9-a1de-4adf-94a7-e3c9c3e8a294",
+    "name": "UT5_TFU",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46976271"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/Health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "Health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

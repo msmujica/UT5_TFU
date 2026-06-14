@@ -1,3 +1,8 @@
-class EstadoPedido():
-    def __init__(self, tipo):
-        self.tipo = tipo
+from enum import Enum, auto
+
+class EstadoPedido(Enum):
+    PAGANDO = auto()
+    PENDIENTE = auto()
+    PREPARANDO = auto()
+    LISTOENTREGAR = auto()
+    ENTREGADO = auto()

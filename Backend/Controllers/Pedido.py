@@ -2,10 +2,10 @@ from Backend.Controllers.EstadoPedido import EstadoPedido
 from Backend.Controllers.Producto import Producto
 from Backend.Controllers.ItemProducto import ItemProducto
 class Pedido():
-    def __init__(self, id_pedido, fecha, data_pedido, productos: list[ItemProducto]):
+    def __init__(self, id_pedido, fecha, productos: list[ItemProducto]):
         self.id_pedido = id_pedido
         self.fecha = fecha
-        self.estado = EstadoPedido(data_pedido)
+        self.estado = EstadoPedido.PAGANDO
         self.productos = productos
     
     def agregar_producto(self, item: Producto, cantidad):

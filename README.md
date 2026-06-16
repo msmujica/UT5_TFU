@@ -27,7 +27,7 @@ UT5_TFU/
 │   └── init.sql
 │
 ├── postman/
-│   └── endpoints.postman_collection.json
+│   └── UT5_TFU.postman_collection.json
 │
 ├── docker-compose.yml
 └── README.md

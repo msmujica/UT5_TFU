@@ -1,4 +1,4 @@
-from Backend.Controllers.IMetodoPago import MetodoPago
+from Controllers.IMetodoPago import MetodoPago
 
 class MercadoPago(MetodoPago):
     def __init__(self, token):

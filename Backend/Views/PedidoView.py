@@ -15,10 +15,7 @@ class PedidoView:
         return {
             "cantidad": len(pedidos),
             "pedidos": [
-                {
                 PedidoView.mostrar_pedido(pedido)
-                for pedido in pedidos
-                }
                 for pedido in pedidos
             ]
         }

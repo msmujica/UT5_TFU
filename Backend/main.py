@@ -3,12 +3,14 @@ from Database.connection import get_connection
 from Controllers.PedidoController import router as pedido_router
 from Controllers.ProductoController import router as producto_router
 from Controllers.EstadisticaController import router as estadistica_router
+from Controllers.EmpleadoController import router as empleado_router
 
 app = FastAPI()
 
 app.include_router(pedido_router)
 app.include_router(producto_router)
 app.include_router(estadistica_router)
+app.include_router(empleado_router)
 
 @app.get("/Health")
 def home():

@@ -1,5 +1,5 @@
 from Database.connection import get_connection
-from Models.PedidoModel import Pedido, RegistrarPedidoSchema
+from Models.PedidoModel import Pedido
 
 
 class PedidoRepository:
@@ -40,7 +40,7 @@ class PedidoRepository:
             pedidos.append(pedido)
 
         return pedidos
-    
+
     def obtener_pedidos_del_dia(self):
         conexion = get_connection()
         cursor = conexion.cursor()
@@ -78,6 +78,62 @@ class PedidoRepository:
 
         return pedidos
 
+    def obtener_pedido_por_id(self, id_pedido: int):
+        conexion = get_connection()
+        cursor = conexion.cursor()
+
+        query = """
+            SELECT 
+                id_pedido,
+                celular_cliente,
+                estado,
+                total,
+                fecha_hora
+            FROM pedido
+            WHERE id_pedido = %s
+        """
+
+        cursor.execute(query, (id_pedido,))
+        fila = cursor.fetchone()
+
+        cursor.close()
+        conexion.close()
+
+        if fila is None:
+            return None
+
+        return Pedido(
+            id_pedido=fila["id_pedido"],
+            cliente=fila["celular_cliente"],
+            estado=fila["estado"],
+            total=fila["total"],
+            fecha=fila["fecha_hora"]
+        )
+
+    def actualizar_estado_pedido(self, id_pedido: int, nuevo_estado: str):
+        conexion = get_connection()
+        cursor = conexion.cursor()
+
+        try:
+            query = """
+                UPDATE pedido
+                SET estado = %s
+                WHERE id_pedido = %s
+            """
+
+            cursor.execute(query, (nuevo_estado, id_pedido))
+            conexion.commit()
+
+            return cursor.rowcount > 0
+
+        except Exception as e:
+            conexion.rollback()
+            raise e
+
+        finally:
+            cursor.close()
+            conexion.close()
+
     def obtener_productos_por_ids(self, ids: list):
         if not ids:
             return []
@@ -86,10 +142,20 @@ class PedidoRepository:
         cursor = conexion.cursor()
 
         placeholders = ", ".join(["%s"] * len(ids))
+
         cursor.execute(
-            f"SELECT id_producto, nombre, precio, activo FROM producto WHERE id_producto IN ({placeholders})",
+            f"""
+            SELECT 
+                id_producto, 
+                nombre, 
+                precio, 
+                activo 
+            FROM producto 
+            WHERE id_producto IN ({placeholders})
+            """,
             ids
         )
+
         resultados = cursor.fetchall()
 
         cursor.close()
@@ -105,19 +171,41 @@ class PedidoRepository:
             total = sum(item["subtotal"] for item in items_calculados)
 
             cursor.execute(
-                "INSERT INTO pedido (celular_cliente, estado, total, id_empleado) VALUES (%s, 'PENDIENTE', %s, %s)",
+                """
+                INSERT INTO pedido 
+                    (celular_cliente, estado, total, id_empleado) 
+                VALUES 
+                    (%s, 'PENDIENTE', %s, %s)
+                """,
                 (celular_cliente, total, id_empleado)
             )
+
             id_pedido = cursor.lastrowid
 
             for item in items_calculados:
                 cursor.execute(
-                    "INSERT INTO detalle_pedido (id_pedido, id_producto, cantidad, precio_unitario, subtotal) VALUES (%s, %s, %s, %s, %s)",
-                    (id_pedido, item["id_producto"], item["cantidad"], item["precio_unitario"], item["subtotal"])
+                    """
+                    INSERT INTO detalle_pedido 
+                        (id_pedido, id_producto, cantidad, precio_unitario, subtotal) 
+                    VALUES 
+                        (%s, %s, %s, %s, %s)
+                    """,
+                    (
+                        id_pedido,
+                        item["id_producto"],
+                        item["cantidad"],
+                        item["precio_unitario"],
+                        item["subtotal"]
+                    )
                 )
 
             cursor.execute(
-                "INSERT INTO pago (id_pedido, medio_pago, estado_pago, monto) VALUES (%s, %s, 'PENDIENTE', %s)",
+                """
+                INSERT INTO pago 
+                    (id_pedido, medio_pago, estado_pago, monto) 
+                VALUES 
+                    (%s, %s, 'PENDIENTE', %s)
+                """,
                 (id_pedido, medio_pago, total)
             )
 

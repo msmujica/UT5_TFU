@@ -11,6 +11,17 @@ class PedidoView:
         }
 
     @staticmethod
+    def mostrar_pedido_registrado(pedido, items):
+        return {
+            "mensaje": "Pedido registrado exitosamente",
+            "id_pedido": pedido.id_pedido,
+            "cliente": pedido.cliente,
+            "estado": pedido.estado,
+            "total": pedido.total,
+            "items": items
+        }
+
+    @staticmethod
     def mostrar_pedidos_en_preparacion(pedidos):
         return {
             "cantidad": len(pedidos),
@@ -19,7 +30,7 @@ class PedidoView:
                 for pedido in pedidos
             ]
         }
-    
+
     @staticmethod
     def mostrar_pedidos_por_estado(pedidos_por_estado):
         return {

@@ -19,7 +19,6 @@ UT5_TFU/
 │   ├── Repositories/
 │   ├── Database/
 │   │   └── connection.py
-│   ├── Middlewares/
 │   ├── main.py
 │   ├── requirements.txt
 │   └── Dockerfile
@@ -32,7 +31,7 @@ UT5_TFU/
 │
 ├── docker-compose.yml
 └── README.md
-
+```
 ---
 
 ## Inicialización del proyecto

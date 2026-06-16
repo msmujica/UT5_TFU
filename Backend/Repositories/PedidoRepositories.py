@@ -1,5 +1,5 @@
 from Database.connection import get_connection
-from Models.PedidoModel import Pedido, RegistrarPedidoSchema
+from Models.PedidoModel import Pedido
 
 
 class PedidoRepository:
@@ -129,6 +129,45 @@ class PedidoRepository:
                 estado="PENDIENTE",
                 total=total,
                 fecha=None
+            )
+
+        except Exception as e:
+            conexion.rollback()
+            raise e
+
+        finally:
+            cursor.close()
+            conexion.close()
+
+    def cancelar_pedido(self, id_pedido):
+        conexion = get_connection()
+        cursor = conexion.cursor()
+
+        try:
+            cursor.execute(
+                "SELECT id_pedido, celular_cliente, estado, total, fecha_hora FROM pedido WHERE id_pedido = %s",
+                (id_pedido,)
+            )
+            fila = cursor.fetchone()
+
+            if not fila:
+                raise ValueError(f"Pedido {id_pedido} no encontrado")
+
+            if fila["estado"] not in ("PENDIENTE",):
+                raise ValueError(f"No se puede cancelar un pedido en estado {fila['estado']}")
+
+            cursor.execute(
+                "UPDATE pedido SET estado = 'CANCELADO' WHERE id_pedido = %s",
+                (id_pedido,)
+            )
+            conexion.commit()
+
+            return Pedido(
+                id_pedido=fila["id_pedido"],
+                cliente=fila["celular_cliente"],
+                estado="CANCELADO",
+                total=fila["total"],
+                fecha=fila["fecha_hora"]
             )
 
         except Exception as e:

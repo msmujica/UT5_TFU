@@ -66,3 +66,6 @@ class PedidoService:
         )
 
         return pedido, items_calculados
+
+    def cancelar_pedido(self, id_pedido):
+        return self.pedido_repository.cancelar_pedido(id_pedido)

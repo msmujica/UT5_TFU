@@ -82,7 +82,6 @@ El comando `docker compose down -v` elimina los volúmenes, por lo que también 
 
 ## Patrón MVC
 
-El proyecto sigue una organización basada en el patrón MVC.
 
 MVC significa:
 

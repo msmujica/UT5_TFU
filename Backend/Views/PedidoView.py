@@ -25,7 +25,10 @@ class PedidoView:
     def mostrar_pedidos_en_preparacion(pedidos):
         return {
             "cantidad": len(pedidos),
-            "pedidos": [PedidoView.mostrar_pedido(pedido) for pedido in pedidos]
+            "pedidos": [
+                PedidoView.mostrar_pedido(pedido)
+                for pedido in pedidos
+            ]
         }
 
     @staticmethod

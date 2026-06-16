@@ -1,4 +1,4 @@
-# UT5_TFU - API con FastAPI, MySQL y Docker
+# UT5_TFU
 
 Este proyecto corresponde a una API desarrollada en Python utilizando FastAPI, conectada a una base de datos MySQL y levantada mediante Docker.
 

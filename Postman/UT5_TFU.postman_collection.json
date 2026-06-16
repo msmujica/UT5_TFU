@@ -7,6 +7,70 @@
   },
   "item": [
     {
+      "name": "Pedidos",
+      "item": [
+        {
+          "name": "en-preparacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pedidos/en-preparacion",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pedidos",
+                "en-preparacion"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pedidos-hoy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pedidos/hoy",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pedidos",
+                "hoy"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "Menu",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/productos/menu",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "productos",
+                "menu"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Health",
       "request": {
         "method": "GET",
@@ -18,6 +82,23 @@
           ],
           "path": [
             "Health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "db-test",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/db-test",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "db-test"
           ]
         }
       },

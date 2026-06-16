@@ -67,6 +67,118 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Crear Producto",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Pizza\",\r\n    \"descripcion\": \"Pizza con queso\",\r\n    \"precio\": 1000,\r\n    \"disponible\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/producto",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "producto"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar Producto",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Pizzassss\",\r\n    \"descripcion\": \"Pizza con queso\",\r\n    \"precio\": 1000,\r\n    \"disponible\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/producto/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "producto",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/producto/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "producto",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Estadisticas",
+      "item": [
+        {
+          "name": "Rendimiento Dia",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/estadisticas/rendimiento-dia",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "estadisticas",
+                "rendimiento-dia"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Rendimientos Mes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/estadisticas/rendimiento-mes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "estadisticas",
+                "rendimiento-mes"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },

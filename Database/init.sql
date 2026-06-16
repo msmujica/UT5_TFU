@@ -4,7 +4,6 @@ USE ut5_tfu_db;
 
 -- =========================
 -- PERSONA
--- Clase base
 -- =========================
 
 CREATE TABLE IF NOT EXISTS persona (
@@ -17,7 +16,6 @@ CREATE TABLE IF NOT EXISTS persona (
 
 -- =========================
 -- EMPLEADO
--- Hereda de Persona
 -- =========================
 
 CREATE TABLE IF NOT EXISTS empleado (
@@ -32,7 +30,6 @@ CREATE TABLE IF NOT EXISTS empleado (
 
 -- =========================
 -- DUEÑO
--- Hereda de Persona
 -- =========================
 
 CREATE TABLE IF NOT EXISTS duenio (

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from enum import Enum
 
 
@@ -20,6 +20,10 @@ class RegistrarPedidoSchema(BaseModel):
     id_empleado: int
     medio_pago: MedioPagoEnum
     items: List[ItemPedidoSchema]
+
+
+class CancelarPedidoSchema(BaseModel):
+    razon: Optional[str] = None
 
 
 class Pedido:

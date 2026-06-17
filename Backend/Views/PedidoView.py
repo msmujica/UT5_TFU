@@ -22,6 +22,15 @@ class PedidoView:
         }
 
     @staticmethod
+    def mostrar_pedido_cancelado(pedido, razon):
+        return {
+            "mensaje": "Pedido cancelado",
+            "id_pedido": pedido.id_pedido,
+            "estado": pedido.estado,
+            "razon": razon
+        }
+
+    @staticmethod
     def mostrar_pedidos_en_preparacion(pedidos):
         return {
             "cantidad": len(pedidos),

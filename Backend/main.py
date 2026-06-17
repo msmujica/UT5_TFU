@@ -6,6 +6,7 @@ from Controllers.EstadisticaController import router as estadistica_router
 from Controllers.NotificacionController import router as notificacion_router
 from Controllers.MetodoPagoController import router as metodo_pago_router
 from Controllers.PagoController import router as pago_router
+from Controllers.EmpleadoController import router as empleado_router
 
 
 
@@ -17,6 +18,7 @@ app.include_router(estadistica_router)
 app.include_router(notificacion_router)
 app.include_router(metodo_pago_router)
 app.include_router(pago_router)
+app.include_router(empleado_router)
 
 @app.get("/Health")
 def home():

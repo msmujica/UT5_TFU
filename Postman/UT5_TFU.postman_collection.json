@@ -10,33 +10,6 @@
       "name": "Pedidos",
       "item": [
         {
-          "name": "registrar-pedido",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"celular_cliente\": \"099123456\",\n  \"id_empleado\": 1,\n  \"medio_pago\": \"EFECTIVO\",\n  \"items\": [\n    { \"id_producto\": 1, \"cantidad\": 1 },\n    { \"id_producto\": 2, \"cantidad\": 2 }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/pedidos",
-              "host": ["{{base_url}}"],
-              "path": ["pedidos"]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "en-preparacion",
           "request": {
             "method": "GET",
@@ -71,6 +44,60 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Crear Pedido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"celular_cliente\": \"099999999\",\r\n  \"id_empleado\": 1,\r\n  \"medio_pago\": \"EFECTIVO\",\r\n  \"items\": [\r\n    {\r\n      \"id_producto\": 1,\r\n      \"cantidad\": 2\r\n    },\r\n    {\r\n      \"id_producto\": 2,\r\n      \"cantidad\": 1\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/pedidos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pedidos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"razon\": \"Pedido Erroneo\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/pedidos/2/cancelar",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pedidos",
+                "2",
+                "cancelar"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -90,6 +117,418 @@
               "path": [
                 "productos",
                 "menu"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Producto",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Pizza\",\r\n    \"descripcion\": \"Pizza con queso\",\r\n    \"precio\": 1000,\r\n    \"disponible\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/producto",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "producto"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modificar Producto",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Pizzassss\",\r\n    \"descripcion\": \"Pizza con queso\",\r\n    \"precio\": 1000,\r\n    \"disponible\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/producto/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "producto",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/producto/4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "producto",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Estadisticas",
+      "item": [
+        {
+          "name": "Rendimiento Dia",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/estadisticas/rendimiento-dia",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "estadisticas",
+                "rendimiento-dia"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Rendimientos Mes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/estadisticas/rendimiento-mes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "estadisticas",
+                "rendimiento-mes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Metodo de Pago",
+      "item": [
+        {
+          "name": "Get_Pago",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PagoPorPedido",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos/pedido/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos",
+                "pedido",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Efectivo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos/efectivo?id_pedido=1&monto=370&monto_entregado=500",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos",
+                "efectivo"
+              ],
+              "query": [
+                {
+                  "key": "id_pedido",
+                  "value": "1"
+                },
+                {
+                  "key": "monto",
+                  "value": "370"
+                },
+                {
+                  "key": "monto_entregado",
+                  "value": "500"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tarjeta",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos/tarjeta?id_pedido=2&monto=370&numero_tarjeta=1234567890123456&fecha_expiracion=12/28&codigo_seguridad=123",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos",
+                "tarjeta"
+              ],
+              "query": [
+                {
+                  "key": "id_pedido",
+                  "value": "2"
+                },
+                {
+                  "key": "monto",
+                  "value": "370"
+                },
+                {
+                  "key": "numero_tarjeta",
+                  "value": "1234567890123456"
+                },
+                {
+                  "key": "fecha_expiracion",
+                  "value": "12/28"
+                },
+                {
+                  "key": "codigo_seguridad",
+                  "value": "123"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "MercadoPago",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/pagos/mercadopago?id_pedido=3&monto=370&token=abc123token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "pagos",
+                "mercadopago"
+              ],
+              "query": [
+                {
+                  "key": "id_pedido",
+                  "value": "3"
+                },
+                {
+                  "key": "monto",
+                  "value": "370"
+                },
+                {
+                  "key": "token",
+                  "value": "abc123token"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pago",
+      "item": [
+        {
+          "name": "Por Pedido",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos/pedido/2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos",
+                "pedido",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Por Pago",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos/2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generar Pago",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pagos?id_pedido=1&medio_pago=EFECTIVO&monto=370",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pagos"
+              ],
+              "query": [
+                {
+                  "key": "id_pedido",
+                  "value": "1"
+                },
+                {
+                  "key": "medio_pago",
+                  "value": "EFECTIVO"
+                },
+                {
+                  "key": "monto",
+                  "value": "370"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Empleado",
+      "item": [
+        {
+          "name": "Estado Recibir",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pedidos/1/recibir",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pedidos",
+                "1",
+                "recibir"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Estado Listo",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pedidos/1/listo",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pedidos",
+                "1",
+                "listo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Estado Entregar",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pedidos/1/entregar",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "pedidos",
+                "1",
+                "entregar"
               ]
             }
           },
@@ -135,7 +574,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "http://localhost:8000",
+      "value": "",
       "type": "default"
     }
   ]

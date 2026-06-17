@@ -1,4 +1,4 @@
-from Backend.Controllers.IMetodoPago import MetodoPago
+from Models.IMetodoPago import MetodoPago
 
 class Tarjeta(MetodoPago):
     def __init__(self, numero_tarjeta, fecha_expiracion, codigo_seguridad):

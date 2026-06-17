@@ -1,4 +1,4 @@
-from Backend.Controllers.IMetodoPago import MetodoPago
+from Models.IMetodoPago import MetodoPago
 
 class Efectivo(MetodoPago):
     def __init__(self, monto_entregado):

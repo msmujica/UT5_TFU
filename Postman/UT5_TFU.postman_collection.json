@@ -10,6 +10,33 @@
       "name": "Pedidos",
       "item": [
         {
+          "name": "registrar-pedido",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"celular_cliente\": \"099123456\",\n  \"id_empleado\": 1,\n  \"medio_pago\": \"EFECTIVO\",\n  \"items\": [\n    { \"id_producto\": 1, \"cantidad\": 1 },\n    { \"id_producto\": 2, \"cantidad\": 2 }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/pedidos",
+              "host": ["{{base_url}}"],
+              "path": ["pedidos"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "en-preparacion",
           "request": {
             "method": "GET",
@@ -108,7 +135,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "",
+      "value": "http://localhost:8000",
       "type": "default"
     }
   ]

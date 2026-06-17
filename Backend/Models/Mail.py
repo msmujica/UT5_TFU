@@ -1,4 +1,4 @@
-from Backend.Controllers.INotificacion import INotificacion
+from Models.INotificacion import INotificacion
 
 class Mail(INotificacion):
     def __init__(self, token):
